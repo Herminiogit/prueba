@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+	<script type="text/javascript">
+	
+	function tes2Tipos(){
+	   alert(typeof(3) + " es un 3");          // number
+	   alert(typeof("Hola") + " es un texto"); // string
+	   alert(typeof(4.7) + " es un 4.7");      // number
+	   alert(typeof('a') + " es un caracter"); // string
+	   alert(typeof(true) + " es un true");    // boolean
+	   alert(typeof(null) + " es un null");    // object
+	   alert(typeof(x) + " es una variable");  // undefined
+	   alert(typeof([])+ " es un array []");   // object
+	   alert(typeof({})+ " es un mapa {}");    // object
+	}
+	   function test3ArraysAsociativos(){
+	   var x = {
+			   "a" : 7,
+			   "b" : "Hola",
+			   c : {
+				   "0" : "Elemento",
+				   "1" : false
+			   }
+	   };
+
+	   /*
+	   alert (x + " que es de tipo " + typeof(x));
+	   alert("Pero se comporta como array " + x["c"][0]);
+	   alert("Y admite notación de objetos " + x.b)
+	   */
+	   document.write (x + " que es de tipo " + typeof(x));
+	   document.write("Pero se comporta como array " + x["c"][0]);
+	   document.write("Y admite notación de objetos " + x.b);	 
+	 }
+	   
+	   function test1Variables(){
+	/* 
+	    var x, y, z;
+	    x=3;
+	    y="Hola";
+	    z = false;
+	    
+	    x='a';
+	    y=7.8;
+	    z = [3,6,9];
+	    
+	    alert("Valores: " +x+y+z);
+	    alert("Tipos: " +typeof(x) +", " + typeof(y)+", " + typeof(z));
+	    
+	    var a =7;
+	    var b=" 7";
+	    
+	    if(a===b) alert("iguales");
+	    else     alert("distintos");  */
+	   }  
+	   
+	  //invocar
+	  //  tes3ArrayAsociativo();
+	
+	 //  alert(test3ArraysAsociativos); 
+	 function test4Funciones(){
+	  var y = function(nombre, edad){
+		  	  
+		  if(edad != 0){
+			  edad = edad || 18;
+			  //los parametrod¡s van en un aray
+		  }
+			  alert(arguments[2] + arguments[3]);
+			  return "Hola" + nombre +" tienes " + edad + " años";
+       }
+		  
+
+	   //alert(y);
+	   alert( y("", 45, 23, "Hola") );
+	 }  
+	 
+	 
+	 //VAMOS A PROBAR EL AMBITO DE LAS VARIABLES
+	 function ambitos(){
+	 x= 5;
+	 var y = 9;
+	 
+	 function f(){
+		 alert(x + " " + y);
+		 var x= "Hola";
+		 var y= "Adios";
+		 alert(x + " " + y);
+	 }
+	 // PUEDO EJECUTAR EN MEDIO LO QUE ME DE LA GANA
+	 f();
+	 alert(x + " " + y);
+	 }
+	 function dom(){
+		 alert(document.body.innerHTML);
+		 document.body.innerHTML += "<b>Hola</b>";
+		 /* document.body.innerHTML += 
+			 '<img alt="Leo Harlem" width="100" src="http://www.mpcmanagement.es/wp-content/uploads/2013/12/correrharm.jpg" /> '; */
+	    // <img>
+			 var imagen = document.createElement("img");
+			 imagen.alt="Leo Harlem";
+			 imagen.width="250";
+			 imagen.src="http://www.mpcmanagement.es/wp-content/uploads/2013/12/correrharm.jpg";
+			 imagen.onmouseover = function(){
+				 var input = document.body.lastChild;
+				 input.value = ("dentro");
+			 };
+			 imagen.onmouseout = function(){
+			//	 var input = document.body.lastChild;
+				 var input = document.body.lastChild;
+				 input.value = ("fuera");
+			 };
+			 document.body.appendChild(imagen);
+			 
+			 
+			 var input = document.createElement("input");
+			 //input.type = "button";
+			 input.value = "Púlsame";
+			 input.id = "caja";
+			 input.name="x";
+			 input.onclick = function(){
+				 alert("Hola");
+			 };
+			 document.body.appendChild(input);
+			 
+	 }
+	 function pintarReloj() {
+		var p = document.getElementById("reloj");
+		var fecha = new Date();
+		p.innerHTML = fecha.toTimeString();
+	 }
+	 
+	 function iniciarReloj(){
+	 // CADA SEGUNDO SE EJECUTA LA FUNCIÓN pintarReloj(), es decir, le pone los parentesis de ejecución de la variable cada segundo.
+	 	 idInterval = setInterval(pintarReloj, 1000);
+	 }
+	 //EXISTE LA FUNCION setTimeout QUE RETRASA UNA EJECUCION
+	 var idTimeout = setTimeout(iniciarreloj, 2000);
+	 function parar(){
+	 setTimeout(iniciarReloj, 5000);
+	 clearTimeout(idTimeout);
+	 clearInterval(idInterval);
+	 }
+	 setTimeout(parar, 5000);
+	 // DADO QUE SE PUEDEN EJECUTAR FUNCIONES
+	 
+	 function operar(x,y,operacion,error){
+		 try {
+			 operacion(x,y);
+			
+		} catch (e) {
+			error(e);
+		}
+		 
+	 }
+	 
+	 function excepcion(e){
+		 alert("Se ha producido una excepción " + e);
+	 }
+	 function mensaje(){
+		 alert("Hola " + arguments[0]);
+	 }
+	 
+	 function sumar(x,y){
+		 if (isNaN(x) || isNaN(y)){
+			 throw new Error("Tienen que ser enteros");
+		 }	
+		 
+	 }
+	 
+	 function dividir(x,y){ 
+		 var r = x/y;
+		 if (isNaN(r)){
+			 throw new Error("NaN");
+		 }
+
+	}
+	 
+	</script>
+</head>
+<body>
+	<p>
+	<input id="x" /><input id ="y" />
+	<br/>
+		<input type="button" value ="Sumar"	onclick="operar('b',4,sumar,mensaje)" />
+		<input type="button" value ="Dividir" onclick="operar(0,0,dividir,excepcion)" />
+	</p>	
+	el body contiene un botón
+		<br/>
+			<input type="button"  value ="clickame" onclick="dom()"/>
+			   Púlsalo y verás
+			<p id="reloj"> aqui se va a pintar la fecha y la hora </p>
+		<br/>
+		
+</body>
+</html>
